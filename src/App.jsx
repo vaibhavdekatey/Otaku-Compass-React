@@ -4,13 +4,14 @@ import {
   RouterProvider,
   useNavigate,
 } from "react-router-dom";
-import "./App.css";
 import RandomAnime from "./RandomAnime";
 import axios from "axios";
 import RandomAnimeCard from "./RandomAnimeCard";
 import SearchAnime from "./SearchAnime";
 import SearchBar from "./SearchBar";
 import AnimeCard from "./AnimeCard";
+import "./App.css";
+import Footer from "./Footer";
 
 function App() {
   const url = "https://api.jikan.moe/v4";
@@ -23,6 +24,9 @@ function App() {
     score: "",
     synopsis: "",
     type: "",
+    genres: {
+      name: "",
+    },
     images: {
       jpg: {
         image_url: "",
@@ -80,7 +84,20 @@ function App() {
     },
     {
       path: "/Random",
-      element: <RandomAnimeCard ranime={ranime} />,
+      element: (
+        <>
+          <SearchBar
+            search={search}
+            setSearch={setSearch}
+            animeList={animeList}
+            handleSearch={handleSearch}
+          />
+
+          <RandomAnimeCard ranime={ranime} />
+
+          <Footer />
+        </>
+      ),
     },
     {
       path: "/animeList",
@@ -92,13 +109,25 @@ function App() {
             animeList={animeList}
             handleSearch={handleSearch}
           />
-          <SearchAnime animeList={animeList} />
+          <SearchAnime animeList={animeList} search={search} />
+          <Footer />
         </>
       ),
     },
     {
       path: "/getAnime/:id",
-      element: <AnimeCard />,
+      element: (
+        <>
+          <SearchBar
+            search={search}
+            setSearch={setSearch}
+            animeList={animeList}
+            handleSearch={handleSearch}
+          />
+          <AnimeCard />
+          <Footer />
+        </>
+      ),
     },
   ]);
 
