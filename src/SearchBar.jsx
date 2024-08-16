@@ -7,9 +7,9 @@ function SearchBar(props) {
     <>
       <nav className="flex flex-row justify-around mt-2 align-middle">
         <div className="items-center flex flex-row">
-          <Link to="/" className="text-white ">
+          <a href="/" className="text-white ">
             Hello
-          </Link>
+          </a>
         </div>
         <div className="items-center justify-center ">
           <form
