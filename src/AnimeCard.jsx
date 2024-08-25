@@ -25,41 +25,83 @@ function AnimeCard() {
   return (
     <>
       <div
-        style={{
-          backgroundImage: `url(${fetchAnime.images.jpg?.large_image_url})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          filter: "blur(12px) brightness(0.4)", // Apply blur and darken effect
-          position: "fixed", // Fix to the entire viewport
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%", // Cover the entire viewport
-          zIndex: -1, // Ensure this is behind all content
-        }}
-      />
-      <div className="relative z-10 flex flex-col items-start mx-72 my-[18vh]">
-        <button>
-          <NavLink to="/animeList">back</NavLink>
-        </button>
+        className="relative w-full random"
+        // style={{
+        //   position: "relative",
+        //   width: "100%",
+        //   height: "70vh",
+        //   marginBottom: "20px",
+        // }}
+      >
+        <div
+          style={{
+            backgroundImage: `url(${fetchAnime.images.jpg?.large_image_url})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            filter: "blur(12px) brightness(0.3)", // Apply blur and darken effect
+            position: "fixed", // Fix to the entire viewport
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%", // Cover the entire viewport
+            zIndex: -3, // Ensure this is behind all content
+          }}
+        />
+        <div
+          className="bg-slate-900/85 h-[100vh] w-full translate-y-[180px]"
+          style={{ zIndex: -1, position: "fixed" }}
+        />
+        <div className="relative z-10 flex flex-col items-start mx-[18vw] ">
+          <button className="my-8 ">
+            <NavLink
+              to="/animeList"
+              className="text-gray-800 bg-slate-100 flex  font-righteous border-2 px-2 py-1 my-5 rounded-md hover:text-[#dbdbdb] hover:bg-slate-800 transition ease-in hover:border-3 "
+            >
+              back
+            </NavLink>
+          </button>
+          <div className="flex flex-row">
+            <img
+              className="w-[340px] h-[480px] mr-10 rounded-lg"
+              src={fetchAnime.images.jpg?.large_image_url}
+              alt={fetchAnime.title}
+            />
+            <div className="flex flex-col mt-12">
+              <h1 className="text-white font-josefin font-semibold text-4xl">
+                {fetchAnime.title}
+              </h1>
+              <h2 className="text-white text-2xl font-josefin">
+                Japanese Title: {fetchAnime.title_japanese}
+              </h2>
+              <h3 className="text-white font-josefin">
+                Type: {fetchAnime.type}
+              </h3>
+              <div className="flex flex-row">
+                {Array.isArray(fetchAnime.genres) &&
+                fetchAnime.genres.length > 0 ? (
+                  fetchAnime.genres.map((genre) => (
+                    <span
+                      key={genre.mal_id}
+                      className=" border-2 p-1 px-2 mr-2 my-2 rounded-3xl flex justify-center items-center text-black-50/70 bg-slate-100/85 flex-row shadow-2xl font-josefin"
+                    >
+                      {genre.name}
+                    </span>
+                  ))
+                ) : (
+                  <p className="text-white font-josefin">No genres available</p>
+                )}
+              </div>
+              <div className="text-white mb-1 font-josefin flex flex-row items-baseline">
+                <p className="text-2xl mr-2 ">Score: </p> {fetchAnime.score}
+              </div>
+              <div className="text-white font-josefin flex flex-row items-baseline">
+                <p className="text-2xl mr-2 ">Rating: </p> {fetchAnime.rating}
+              </div>
 
-        {/* {console.log(fetchAnime)} */}
-        <h1>{fetchAnime.title}</h1>
-        <h1>{fetchAnime.title_japanese}</h1>
-        <img src={fetchAnime.images?.jpg.large_image_url} alt="" />
-        <p>Rating: {fetchAnime.rating}</p>
-        <p>Type: {fetchAnime.type}</p>
-        <p>Score: {fetchAnime.score}</p>
-
-        {genre_show?.map((gen) => (
-          <p key={gen.mal_id} className="text-white">
-            {gen.name}
-          </p>
-        ))}
-
-        <p>Duration: {fetchAnime.duration}</p>
-        <p>Episodes: {fetchAnime.episodes}</p>
-        <p>Synopsis: {fetchAnime.synopsis}</p>
+              <p className="text-white font-josefin">{fetchAnime.synopsis}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

@@ -24,6 +24,7 @@ function App() {
     score: "",
     synopsis: "",
     type: "",
+    rating: "",
     genres: {
       name: "",
     },
@@ -79,6 +80,7 @@ function App() {
             handleSearch={handleSearch}
           />
           <RandomAnime fetchRandomAnime={fetchRandomAnime} />
+          <Footer className="absolute bottom-0" />
         </>
       ),
     },
@@ -91,6 +93,7 @@ function App() {
             setSearch={setSearch}
             animeList={animeList}
             handleSearch={handleSearch}
+            className="bg-white"
           />
 
           <RandomAnimeCard ranime={ranime} />
