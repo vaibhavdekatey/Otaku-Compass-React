@@ -96,7 +96,10 @@ function App() {
             className="bg-white"
           />
 
-          <RandomAnimeCard ranime={ranime} />
+          <RandomAnimeCard
+            ranime={ranime}
+            fetchRandomAnime={fetchRandomAnime}
+          />
 
           <Footer />
         </>

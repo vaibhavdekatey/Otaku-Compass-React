@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import Footer from "./Footer";
 
-function RandomAnimeCard({ ranime }) {
+function RandomAnimeCard({ ranime, fetchRandomAnime }) {
   return (
     <div
       className="relative w-full random"
@@ -38,6 +38,15 @@ function RandomAnimeCard({ ranime }) {
             className="text-gray-800 bg-slate-100 flex  font-righteous border-2 px-2 py-1 my-5 rounded-md hover:text-[#dbdbdb] hover:bg-slate-800 transition ease-in hover:border-3 "
           >
             back
+          </a>
+          <a
+            className="text-gray-800 bg-slate-100 flex  font-righteous border-2 px-2 py-1 my-5 rounded-md hover:text-[#dbdbdb] hover:bg-slate-800 transition ease-in hover:border-3 "
+            href="/Random"
+            onClick={() => {
+              fetchRandomAnime;
+            }}
+          >
+            Get Another Random Anime
           </a>
         </button>
         <div className="flex flex-row">
