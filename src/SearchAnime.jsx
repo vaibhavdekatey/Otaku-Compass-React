@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "./Footer";
 
 function SearchAnime({ animeList, search }) {
-  const animesearch = search;
+  const [animesearch, setAnimeSearch] = useState("");
+
+  useEffect(() => {
+    if (search && !animesearch) {
+      setAnimeSearch(search);
+    }
+  }, [search]);
 
   if (!animeList || animeList.length === 0) {
     return (
