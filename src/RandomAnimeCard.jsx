@@ -32,12 +32,12 @@ function RandomAnimeCard({ ranime, fetchRandomAnime }) {
         style={{ zIndex: -1, position: "fixed" }}
       />
       <div className="relative z-10 flex flex-col items-start mx-[18vw] ">
-        <button className="my-8 ">
+        <div className="my-8 flex flex-row justify-between min-w-full">
           <a
             href="/"
             className="text-gray-800 bg-slate-100 flex  font-righteous border-2 px-2 py-1 my-5 rounded-md hover:text-[#dbdbdb] hover:bg-slate-800 transition ease-in hover:border-3 "
           >
-            back
+            Back
           </a>
           <a
             className="text-gray-800 bg-slate-100 flex  font-righteous border-2 px-2 py-1 my-5 rounded-md hover:text-[#dbdbdb] hover:bg-slate-800 transition ease-in hover:border-3 "
@@ -48,7 +48,7 @@ function RandomAnimeCard({ ranime, fetchRandomAnime }) {
           >
             Get Another Random Anime
           </a>
-        </button>
+        </div>
         <div className="flex flex-row">
           <img
             className="w-[340px] h-[480px] mr-10 rounded-lg"
