@@ -33,12 +33,12 @@ function RandomAnimeCard({ ranime }) {
       />
       <div className="relative z-10 flex flex-col items-start mx-[18vw] ">
         <button className="my-8 ">
-          <NavLink
-            to="/"
+          <a
+            href="/"
             className="text-gray-800 bg-slate-100 flex  font-righteous border-2 px-2 py-1 my-5 rounded-md hover:text-[#dbdbdb] hover:bg-slate-800 transition ease-in hover:border-3 "
           >
             back
-          </NavLink>
+          </a>
         </button>
         <div className="flex flex-row">
           <img
