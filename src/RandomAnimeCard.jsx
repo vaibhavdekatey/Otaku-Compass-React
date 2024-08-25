@@ -55,7 +55,7 @@ function RandomAnimeCard({ ranime, fetchRandomAnime }) {
             src={ranime.images.jpg?.large_image_url}
             alt={ranime.title}
           />
-          <div className="flex flex-col mt-12">
+          <div className="flex flex-col mt-20">
             <h1 className="text-white font-josefin font-semibold text-4xl">
               {ranime.title}
             </h1>
@@ -82,6 +82,9 @@ function RandomAnimeCard({ ranime, fetchRandomAnime }) {
             </div>
             <div className="text-white font-josefin flex flex-row items-baseline">
               <p className="text-2xl mr-2 ">Rating: </p> {ranime.rating}
+            </div>
+            <div className="text-white font-josefin flex flex-row items-baseline">
+              <p className="text-2xl mr-2 ">Episodes : </p> {ranime.episodes}
             </div>
 
             <p className="text-white font-josefin">{ranime.synopsis}</p>

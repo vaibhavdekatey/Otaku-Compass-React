@@ -25,6 +25,7 @@ function App() {
     synopsis: "",
     type: "",
     rating: "",
+    episodes: "",
     genres: {
       name: "",
     },

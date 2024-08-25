@@ -3,9 +3,19 @@ import React from "react";
 function Footer() {
   return (
     <>
-      <footer className=" flex flex-row justify-around align-middle relative shadow-inner bg-gray-950 h-12 bottom-0 inset-0">
+      <footer className=" flex flex-row justify-around align-middle relative shadow-inner px-48 bg-gray-950 h-12 ">
         <span className="items-center flex justify-center text-[#FFFFFF] sm:text-center  font-righteous text-lg">
           © Vaibhav Dekatey
+        </span>
+        <span className="items-center flex justify-center text-[#FFFFFF] sm:text-center font-righteous text-lg">
+          Powered by
+          <a
+            className="ml-2 text-rose-700 transition ease-in hover:text-orange-500"
+            href="https://jikan.moe/"
+            target="_blank"
+          >
+            Jikan API
+          </a>
         </span>
         <ul className="flex flex-row items-center text-sm font-medium text-gray-500 align-middle">
           <li className="flex mx-1 ">

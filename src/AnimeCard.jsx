@@ -62,11 +62,12 @@ function AnimeCard() {
           </button>
           <div className="flex flex-row">
             <img
-              className="w-[340px] h-[480px] mr-10 rounded-lg"
+              className="w-[340px] h-[480px] mr-10 rounded-lg shadow-2xl"
               src={fetchAnime.images.jpg?.large_image_url}
               alt={fetchAnime.title}
             />
-            <div className="flex flex-col mt-12">
+
+            <div className="flex flex-col mt-20">
               <h1 className="text-white font-josefin font-semibold text-4xl">
                 {fetchAnime.title}
               </h1>
