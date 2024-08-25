@@ -39,7 +39,9 @@ function App() {
   });
 
   const fetchRandomAnime = async () => {
-    const randomAnime = await axios.get(url + `/random/anime?sfw`);
+    const randomAnime = await axios.get(
+      url + `/random/anime?sfw&?min_score=6.0`
+    );
     setRAnime(randomAnime.data.data);
     // console.log(randomAnime);
   };

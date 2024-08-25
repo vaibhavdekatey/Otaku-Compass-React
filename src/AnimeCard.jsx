@@ -6,14 +6,33 @@ function AnimeCard() {
   const { id } = useParams();
   const url = "https://api.jikan.moe/v4";
   const [fetchAnime, setFetchAnime] = useState([]);
+  const [fetchChar, setFetchChar] = useState([]);
+  const [mainChar, setMainChar] = useState([]);
 
   const fetchAnimefromList = async (id) => {
-    const animefetch = await axios.get(url + `/anime/${id}/full`);
-    setFetchAnime(animefetch.data.data);
+    try {
+      const animefetch = await axios.get(url + `/anime/${id}/full`);
+      const response = await axios.get(url + `/anime/${id}/characters`);
+
+      const mainCharacters = response.data.data.filter(
+        (char) => char.role === "Main"
+      );
+
+      const sideCharacters = response.data.data.filter(
+        (char) => char.role === "Supporting"
+      );
+
+      setMainChar(mainCharacters);
+      setFetchAnime(animefetch.data.data);
+      setFetchChar(sideCharacters);
+    } catch (error) {
+      console.error("error fetching");
+    }
   };
 
   useEffect(() => {
     fetchAnimefromList(id);
+    console.log(fetchChar);
   }, []);
 
   if (!fetchAnime || fetchAnime.length === 0) {
@@ -62,12 +81,12 @@ function AnimeCard() {
           </button>
           <div className="flex flex-row">
             <img
-              className="w-[340px] h-[480px] mr-10 rounded-lg shadow-2xl"
+              className="w-[400px] h-[540px] mr-10 rounded-lg shadow-2xl"
               src={fetchAnime.images.jpg?.large_image_url}
               alt={fetchAnime.title}
             />
 
-            <div className="flex flex-col mt-20">
+            <div className="flex flex-col mt-16">
               <h1 className="text-white font-josefin font-semibold text-4xl">
                 {fetchAnime.title}
               </h1>
@@ -92,14 +111,85 @@ function AnimeCard() {
                   <p className="text-white font-josefin">No genres available</p>
                 )}
               </div>
-              <div className="text-white mb-1 font-josefin flex flex-row items-baseline">
-                <p className="text-2xl mr-2 ">Score: </p> {fetchAnime.score}
+              <div className="flex flex-row">
+                <p className="text-white font-josefin text-2xl mr-2">Studio:</p>
+                {Array.isArray(fetchAnime.studios) &&
+                fetchAnime.studios.length > 0 ? (
+                  fetchAnime.studios.map((studios) => (
+                    <p
+                      key={studios.mal_id}
+                      className="text-white text-2xl font-josefin"
+                    >
+                      {studios.name}
+                    </p>
+                  ))
+                ) : (
+                  <p className="text-white font-josefin">No studios recorded</p>
+                )}
               </div>
-              <div className="text-white font-josefin flex flex-row items-baseline">
-                <p className="text-2xl mr-2 ">Rating: </p> {fetchAnime.rating}
-              </div>
+              <p className="text-2xl mr-2 text-white mb-1 font-josefin flex flex-row items-baseline">
+                Score: {fetchAnime.score}
+              </p>
 
+              <p className="text-white font-josefin flex flex-row items-baseline text-2xl mb-1">
+                Episodes: {fetchAnime.episodes}
+              </p>
+              <p className="text-white font-josefin flex flex-row items-baseline text-2xl  ">
+                Rating: {fetchAnime.rating}
+              </p>
               <p className="text-white font-josefin">{fetchAnime.synopsis}</p>
+            </div>
+          </div>
+          <div className="mt-10">
+            <h2 className="text-white text-3xl font-josefin">
+              Main Characters
+            </h2>
+            <div className="flex flex-wrap">
+              {mainChar.map((char) => (
+                <div
+                  key={char.character.mal_id}
+                  className="mr-4 mb-4 flex flex-col items-center "
+                >
+                  <img
+                    src={char.character.images.jpg.image_url}
+                    alt={char.character.name}
+                    className="w-[70px] h-[100px] rounded-lg shadow-lg"
+                  />
+                  <p className="text-white text-center text-xs mt-2 font-josefin">
+                    {char.character.name}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="mt-10 mb-5">
+            <h2 className="text-white text-3xl font-josefin mb-2">
+              Supporting Characters
+            </h2>
+            <div className="flex flex-wrap">
+              {Array.isArray(fetchChar) && fetchChar.length > 0 ? (
+                fetchChar.map((char) => (
+                  <>
+                    <div
+                      key={char.character.mal_id}
+                      className="mr-4 mb-4 flex flex-col flex-wrap items-center w-[88px] h-[180]"
+                    >
+                      <img
+                        src={char.character.images.jpg.image_url}
+                        alt={char.character.name}
+                        className="w-[70px] h-[100px] rounded-lg shadow-lg"
+                      />
+                      <p className="text-white text-center text-xs mt-2 font-josefin">
+                        {char.character.name}
+                      </p>
+                    </div>
+                  </>
+                ))
+              ) : (
+                <p className="text-white text-3xl font-josefin">
+                  No supporting characters
+                </p>
+              )}
             </div>
           </div>
         </div>

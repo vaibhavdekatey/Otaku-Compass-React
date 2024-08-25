@@ -12,7 +12,7 @@ function RandomAnime(props) {
 
           <button className="mt-5 self-center  ">
             <NavLink
-              className="text-[#dbdbdb] font-righteous text-base h-[40px] w-24 flex border-2 px-2 py-1 rounded-md bg-white/10 hover:text-[#000000] hover:bg-white transition ease-in align-middle flex-col  justify-center"
+              className="text-[#dbdbdb] font-righteous text-base h-[40px] w-24 flex border-2 px-2 py-1 rounded-md bg-white/10 hover:text-[#fffffff] hover:bg-rose-800 transition ease-in align-middle flex-col  justify-center"
               to="/Random"
               onClick={() => {
                 props.fetchRamdomAnime;
